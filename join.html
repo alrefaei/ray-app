@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>دعوة إلى راي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="icon.png">
+</head>
+<body>
+<div class="wrap">
+<div class="hero">
+<img src="icon.png" alt="أيقونة راي">
+<h1>دعوة إلى راي</h1>
+<p>اضغط «فتح في تطبيق راي» لتأكيد اسمك، وإضافة بريدك، وإنشاء كلمة المرور.</p>
+<div class="btns"><a class="btn" id="open" href="ray://join">فتح في تطبيق راي</a><a class="btn line" href="https://apps.apple.com/app/id6821119192">تحميل التطبيق</a></div>
+<p class="muted">لم يُفتح التطبيق؟ حمّله أولاً، ثم ارجع إلى الرسالة واضغط الرابط مرة أخرى.</p>
+</div>
+<section class="en">
+<p>Tap "فتح في تطبيق راي" to open the Ray app, confirm your name, add your email and create a password. If the app does not open, install it first, then tap the link in the message again.</p>
+</section>
+</div>
+<script>
+// the invitation token travels to the app only (ray://join?t=…); nothing is sent anywhere from this page
+(function () {
+  var t = new URLSearchParams(location.search).get('t') || '';
+  if (!/^[A-Za-z0-9_-]{20,40}$/.test(t)) return;
+  var url = 'ray://join?t=' + encodeURIComponent(t);
+  document.getElementById('open').href = url;
+  setTimeout(function () { location.href = url; }, 300);
+})();
+</script>
+</body>
+</html>
